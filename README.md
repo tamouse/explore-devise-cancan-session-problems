@@ -1,32 +1,13 @@
+# Explore Rails + Devise + CanCan + ErrorsController + Session
 
-# README
+Having some issues on one of my work projects, I need to explore how
+these all work together.
 
-A newly generated Rails application with the following already baked in:
+The problem is being able to swing back to a path after first being
+redirected to sign in.
 
-* pry
-* rspec
-* factory girl
-* haml
-* twitter bootstrap
-* additional support for twitter bootstrap form building
+## Dependencies
 
-The database you've chosen has already been created.
-
-There is a static startup page at root.
-
-Tests are run with:
-
-    bin/rake # with no parameters
-
-or:
-
-    bin/rspec
-
-Information you should add here:
-
-* Ruby version
-* System dependencies
-* Configuration
-* Services (job queues, cache servers, search engines, etc.)
-* Deployment instructions
-
+* Devise
+* CanCan (not CanCanCan)
+* PostGreSQL database
