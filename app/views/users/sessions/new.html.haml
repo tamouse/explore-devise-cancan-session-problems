@@ -1,0 +1,17 @@
+.container
+
+  .page-header
+    %h2 Log in
+
+  = twitter_bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), layout: :horizontal, default_div_class: 'col-lg-10 (default)', role: 'form (default)') do |f|
+    = f.inputs "Sign In", class: "sign_in" do
+      = f.email_field :email, :placeholder => 'me@example.com', div_class: 'col-md-6', autofocus: true
+      = f.password_field :password
+    - if devise_mapping.rememberable?
+      = f.toggles 'options' do
+        = f.check_box :remember_me, "Remember me"
+
+    = f.actions do
+      = f.submit "Log in"
+
+  = render "devise/shared/links"

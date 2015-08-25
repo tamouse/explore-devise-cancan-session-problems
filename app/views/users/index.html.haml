@@ -1,21 +1,28 @@
-%h1 Listing users
+.container
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
-      %th
+  .page-header
+    %h1 Listing users
 
-  %tbody
-    - @users.each do |user|
+  %table.table
+    %thead
       %tr
-        %td= user.name
-        %td= link_to 'Show', user
-        %td= link_to 'Edit', edit_user_path(user)
-        %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %th Name
+        %th
+        %th
+        %th
 
-%br
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.name
+          %td= link_to 'Show', user
+          %td= link_to 'Edit', edit_user_path(user)
+          - if can? :delete, user
+            %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          - else
+            &nbsp;
 
-= link_to 'New User', new_user_path
+  %br
+
+  - if can? :create, @user
+    = link_to 'New User', new_user_path, class: "btn btn-default"

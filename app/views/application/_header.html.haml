@@ -11,4 +11,10 @@
     .collapse.navbar-collapse#navbar-collapse-1
       %ul.nav.navbar-nav
         %li= link_to "Welcome", static_pages_index_path
-
+        %li= link_to "Users", users_path
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li.navbar-text= "Signed in as #{current_user.name}"
+          %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+        - else
+          %li= link_to "Sign In", new_user_session_path

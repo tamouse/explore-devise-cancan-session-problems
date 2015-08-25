@@ -1,9 +1,20 @@
-%p#notice= notice
+.container
 
-%p
-  %b Name:
-  = @user.name
+  .row
+    .col-sm-12
+      %p#notice= notice
 
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path
+  .row
+    .col-sm-12
+      %dl.dl-horizontal
+        - %i[name email sign_in_count last_sign_in_at bio].each do |field|
+          %dt= field.to_s.humanize
+          %dd= @user.send(field) || "&mdash;".html_safe
+
+  .row
+
+    .col-sm-12
+      - if current_user && can?(:update, @user)
+        = link_to 'Edit', edit_user_path(@user), class: "btn btn-default"
+        \|
+      = link_to 'Back', users_path, class: "btn btn-default"

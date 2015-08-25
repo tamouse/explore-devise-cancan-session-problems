@@ -1,4 +1,4 @@
-= form_for @user do |f|
+= twitter_bootstrap_form_for(@user, layout: :horizontal, default_div_class: 'col-lg-10 (default)', role: 'form (default)') do |user|
   - if @user.errors.any?
     #error_explanation
       %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
@@ -6,8 +6,14 @@
         - @user.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .actions
-    = f.submit 'Save'
+  = user.inputs 'User Information' do
+    = user.text_field :name
+    = user.email_field :email
+    = user.password_field :password do
+      %span.help-block
+        Leave blank to leave password unchanged
+    = user.password_field :password_confirmation
+    = user.text_area :bio
+
+  = user.actions do
+    = user.submit 'Save'
